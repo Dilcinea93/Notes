@@ -1,10 +1,5 @@
-@extends('layout')
-@section('title','Registrar')
 
-
-@section('content')
-              
-              <form action="{{url('/guardar')}}" method="post">
+<form action="{{url('/guardar')}}" method="post">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -26,5 +21,3 @@
 
                             <button class="btn btn-info btn-block" type="submit">REGISTRAR INFORMACION</button>
                         </form>
-@endsection
-

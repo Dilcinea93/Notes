@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Tema extends Migration
+class Glosario extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,10 @@ class Tema extends Migration
     public function up()
     {
         //
-        Schema::dropIfExists('categoria');
-        Schema::create('tema', function (Blueprint $table) {
+        Schema::create('glosario', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_c');
-
             $table->string('titulo');
-            $table->string('post');
+            $table->string('descripcion');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,7 +31,7 @@ class Tema extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('glosario');
 
-        
     }
 }

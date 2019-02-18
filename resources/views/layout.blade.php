@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="{{asset('img/icono.png')}}" />
 
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>@yield('title') - Tutorials</title>
+    <title>@yield('title') - DigiNote</title>
     <!-- Icons-->
     <!-- Main styles for this application--><meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="css/style.css" rel="stylesheet">
@@ -27,9 +27,9 @@
     
     <script src="{{asset('/js/jquery.min.js')}}"></script>
 
-    <script src="{{asset('/css/bootstrap.min.css')}}"></script>
-
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="{{asset('/vendors/ckeditor/ckeditor.js')}}"></script>
 
     <script src="{{asset('/js/funciones.js')}}"></script>
@@ -56,29 +56,87 @@
     </header>
    
       <main class="main">
+
+        <div class="dropdown">
+   
+
         <!-- Breadcrumb-->
        <nav class="app-header navbar nav navbar-inverse">
-          <ul class="nav navbar-nav d-md-down-none">
+
+        <a href="#" class="navbar-brand"><h2>DigiNote</h2></a>
+          <ul class="nav navbar-nav d-md-down-none ">
+        
         <li class="nav-item px-3">
-          <a class="nav-link" href="#"><h3>categorias</h3></a>
+          <a class="nav-link" data-toggle="dropdown"><h3>Categorias</h3> <span class="caret"></span></a>
+
+          <ul class="dropdown-menu">
+               
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 8])}}"><h3>recursos</h3></a>
+                </li>
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 5])}}"><h3>errores</h3></a>
+                </li>
+
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 3])}}"><h3>Idiomas</h3></a>
+                </li>
+
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 4])}}"><h3>C#</h3></a>
+                </li>
+
+
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 1])}}"><h3>HTML</h3></a>
+                </li>
+
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 2])}}"><h3>PHP</h3></a>
+                </li>
+
+                <li class="nav-item px-3">
+                  <a href="{{url ('resultados',['id' => 9])}}"><h3>Interesantes</h3></a>
+                </li>
+              </ul>
         </li>
+        
+
         <li class="nav-item px-3">
-          <a class="nav-link" href="#"><h3>interesantes</h3></a>
+          <a class="nav-link" data-toggle="dropdown"><h3>Glosario</h3> <span class="caret"></span></a>
+
+              <ul class="dropdown-menu">
+                <li><a href="{{url ('resultados',['id' => 7])}}"><h3>Siglas</h3></a></li>
+                <li><a href="{{url ('resultados',['id' =>6])}}"><h3>Terminos</h3></a></li>
+              </ul>
+
         </li>
-        <li class="nav-item px-3">
-          <a class="nav-link" href="#"><h3>recursos</h3></a>
-        </li>
-        <li class="nav-item px-3">
-          <a class="nav-link" href="#"><h3>errores</h3></a>
-        </li>
+
       </ul>
-      <div class="col-sm-7">
+      <div class="col-sm-3">
       <div class="search">
-         <span class="glyphicon glyphicon-search"> </span> <input type="text" name="search" id="search" placeholder="Que quieres buscar?" class="form-control">
+
+         <form action="{{url('/search')}}" method="get">
+                {{ csrf_field() }}
+        <div class="col-sm-4"> 
+          <button type="submit">
+         <span class="glyphicon glyphicon-search"> </span> SEARCH</button>
+        </div>
+
+        <div class="col-sm-8">
+               
+         <input type="text" name="search" id="search" placeholder="Busca por palabra o categoria" class="form-control">
+        </div>
+        </form>
         </div>
         </div>
       </nav>
-<a href="{{url('falta')}}">FALTA</a>
+
+
+  </div>
+
+<a href="javascript:history.go(-1)"> VOLVER  </a> <span class="glyphicon glyphicon-back"></span>
+<div class="container">
               <div class="row">
                 <div class="col-sm-8 offset-2">
                   
@@ -86,20 +144,33 @@
                 </div>
               </div>
                         
+</div>
                         <div style="background:#080a19;">
 
 
                         <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>
-                              <div class="row">
-                              @foreach($posts   as $post)
-                          <input type="hidden" name="" id="value" value="{!! $post->id!!}">
-                              <div class="col-sm-2 offset-2 card">
+                        @if(!empty($posts))
+                          <div class="row">
+                              @foreach($posts as $post)
+                              <ul style="list-style: none;">
+                                <li >
+                                  <h3>
+                                    
+                                  <a style="color:white;" href="{{url ('tema',['id' => $post->id])}}"> {!! $post->titulo!!}</a>
 
-                            <img class="card-img-top" src="..."  id="post" alt="{!! $post->titulo!!}">
-                              </div>
+                                  </h3>
+                                </li>
+                              </ul>
                               @endforeach
                             </div>
+                        @else
+                              
+
+                          <h2>Aun no hay ningun post</h2>
+                        @endif
                         </div>
+
+  
    
     <!-- CoreUI and necessary plugins-->
   

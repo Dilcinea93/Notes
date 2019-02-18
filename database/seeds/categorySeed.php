@@ -30,5 +30,21 @@ class categorySeed extends Seeder
         categoria::create([
         	'nombre'=>'Errores'
         ]);
+
+        categoria::create([
+            'nombre'=>'Terminos'
+        ]);
+
+
+        categoria::create([
+            'nombre'=>'siglas'
+        ]);
+        categoria::create([
+            'nombre'=>'recursos'
+        ]);
+
+        categoria::create([
+            'nombre'=>'interesantes'
+        ]);
     }
 }

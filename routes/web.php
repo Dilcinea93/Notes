@@ -11,15 +11,18 @@
 |
 */
 
-Route::get('/', 'temaController@index');
+Route::get('/', 'temaController@index')->name('home');
+
+Route::get('tema/{id}', 'temaController@results');
 
 
 
 Route::post('/guardar', 'temaController@store');
 
-Route::get('/resultados', 'temaController@results'); //ebe ser get o post?
-
-
 Route::get('/falta', 'temaController@falta');
 
+Route::get('/editar', 'temaController@edit');
+
+
 Route::get('/search', 'temaController@search');
+Route::get('/resultados/{id}', 'temaController@listado');
