@@ -4,7 +4,20 @@
 @section('content')
 
 	@foreach($posts as $post)
-	      <a href="{{url ('tema',['id' => $post->id])}}"> {!! $post->titulo!!}</a> &nbsp;&nbsp; categoria: {!! $post->categoria->nombre!!}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+			<center>
+				<h2><u>{!! $post->titulo!!}</u> &nbsp;&nbsp;</h2>
+				
+			</center>
+				<h4>
+	       		<span style="color:blue">categoria: {!! $post->categoria->nombre!!}</span></h4>
+			</div>
+		</div>
+	</div>
+	
+
 	  <div class="container">
 
 	  	<p>  {!! $post->post!!} </p> 

@@ -135,7 +135,7 @@
 
   </div>
 
-<a href="javascript:history.go(-1)"> VOLVER  </a> <span class="glyphicon glyphicon-back"></span>
+ <span class="glyphicon glyphicon-step-backward"></span><a href="javascript:history.go(-1)"> VOLVER  </a>
 <div class="container">
               <div class="row">
                 <div class="col-sm-8 offset-2">
