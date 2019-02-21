@@ -16,8 +16,8 @@ class Tema extends Migration
         //
         Schema::create('tema', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
-            $table->string('post');
+            $table->text('titulo');
+            $table->text('post');
             $table->rememberToken();
             $table->timestamps();
         });

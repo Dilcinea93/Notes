@@ -136,7 +136,7 @@
   </div>
 
  <span class="glyphicon glyphicon-step-backward"></span><a href="javascript:history.go(-1)"> VOLVER  </a>
-<div class="container">
+<div class="container" style="height:700px;">
               <div class="row">
                 <div class="col-sm-8 offset-2">
                   
@@ -149,6 +149,7 @@
 
 
                         <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>
+
                         @if(!empty($posts))
                           <div class="row">
                               @foreach($posts as $post)

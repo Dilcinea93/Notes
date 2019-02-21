@@ -8,6 +8,8 @@
 		<div class="row">
 			<div class="col-sm-6">
 			<center>
+
+				<input type="hidden" id="id" name="" value="{!! $post->id!!}">
 				<h2><u>{!! $post->titulo!!}</u> &nbsp;&nbsp;</h2>
 				
 			</center>

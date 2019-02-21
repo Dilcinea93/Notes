@@ -71,6 +71,6 @@ $resultados=temas::where('categoria_id', $request['id'])->get();
     }
 
     public function edit(){
-         return view('welcome',compact('categorias','posts','titulo'));
+         return view('edit');
     }
 }

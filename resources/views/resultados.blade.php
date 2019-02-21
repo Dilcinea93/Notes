@@ -5,7 +5,10 @@
 @section('content')
 	@foreach($search as $searchs)
 
-	  <a href="{{url ('tema',['id' => $searchs->id])}}"> {!! $searchs->titulo!!}</a>
+	  <center>
+				<h2><u>{!! $searchs->titulo!!}</u></h2>
+				
+			</center>
 	  <div class="container">
 
 	  	<p>  {!! $searchs->post!!} </p>

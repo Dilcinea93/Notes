@@ -8,11 +8,9 @@
 	@foreach($resultados as $resultado)
 	      <li>
 	      	<h2>
-	      		<i>
 	      			<u>
 	      				<a href="{{url ('tema',['id' => $resultado->id])}}"> {!! $resultado->titulo!!}</a>
 	      			</u>
-	      		</i>
 	      	</h2>
 	      	
 	 
