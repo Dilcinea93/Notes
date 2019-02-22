@@ -21,7 +21,7 @@
 	
 
 	  <div class="container">
-
+<input type="hidden" name="token" value="{{csrf_token()}}">
 	  	<p>  {!! $post->post!!} </p> 
 	  	<button class="btn btn-warning" id="borrar"><span class="glyphicon glyphicon-erase"></span>Borrar</button>
 

@@ -21,7 +21,7 @@ Route::post('/guardar', 'temaController@store');
 
 Route::get('/falta', 'temaController@falta');
 
-Route::post('/editar', 'temaController@edit');
+Route::post('/editar', 'temaController@edit')->name('edit');
 
 
 Route::get('/search', 'temaController@search');
