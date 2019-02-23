@@ -57,95 +57,89 @@
    
       <main class="main">
 
-        <div class="dropdown">
    
 
         <!-- Breadcrumb-->
-       <nav class="app-header navbar nav navbar-inverse">
+        <div style="width:100%;background:red;">
+           <nav class="app-header navbar nav navbar-inverse">
+            <div class="col-sm-3">
+              
+              <a href="{{route('home')}}" class="navbar-brand"><h2>DigiNote</h2></a>
+            </div>
 
-        <a href="#" class="navbar-brand"><h2>DigiNote</h2></a>
-          <ul class="nav navbar-nav d-md-down-none ">
-        
-        <li class="nav-item px-3">
-          <a class="nav-link" data-toggle="dropdown"><h3>Categorias</h3> <span class="caret"></span></a>
+              <div class="col-sm-4">
+                <div class="search">
+                  <form action="{{url('/search')}}" method="get">
+                            {{ csrf_field() }}
+                    <div class="col-sm-2"> 
+                      <button type="submit" class="btn btn-success">
+                     <span class="glyphicon glyphicon-search"> </span> SEARCH</button>
+                    </div>
 
-          <ul class="dropdown-menu">
-               
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 8])}}"><h3>recursos</h3></a>
-                </li>
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 5])}}"><h3>errores</h3></a>
-                </li>
-
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 3])}}"><h3>Idiomas</h3></a>
-                </li>
-
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 4])}}"><h3>C#</h3></a>
-                </li>
-
-
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 1])}}"><h3>HTML</h3></a>
-                </li>
-
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 2])}}"><h3>PHP</h3></a>
-                </li>
-
-                <li class="nav-item px-3">
-                  <a href="{{url ('resultados',['id' => 9])}}"><h3>Interesantes</h3></a>
-                </li>
-              </ul>
-        </li>
-        
-
-        <li class="nav-item px-3">
-          <a class="nav-link" data-toggle="dropdown"><h3>Glosario</h3> <span class="caret"></span></a>
-
-              <ul class="dropdown-menu">
-                <li><a href="{{url ('resultados',['id' => 7])}}"><h3>Siglas</h3></a></li>
-                <li><a href="{{url ('resultados',['id' =>6])}}"><h3>Terminos</h3></a></li>
-              </ul>
-
-        </li>
-
-      </ul>
-      <div class="col-sm-3">
-      <div class="search">
-
-         <form action="{{url('/search')}}" method="get">
-                {{ csrf_field() }}
-        <div class="col-sm-4"> 
-          <button type="submit">
-         <span class="glyphicon glyphicon-search"> </span> SEARCH</button>
-        </div>
-
-        <div class="col-sm-8">
-               
-         <input type="text" name="search" id="search" placeholder="Busca por palabra o categoria" class="form-control">
-        </div>
-        </form>
-        </div>
-        </div>
-      </nav>
-
-
-  </div>
-
- <span class="glyphicon glyphicon-step-backward"></span><a href="javascript:history.go(-1)"> VOLVER  </a>
-<div class="container" style="height:700px;">
-              <div class="row">
-                <div class="col-sm-8 offset-2">
-                  
-              @yield('content')
+                    <div class="col-sm-10">
+                           
+                     <input type="text" name="search" id="search" placeholder="Busca por palabra o categoria" class="form-control">
+                    </div>
+                  </form>
                 </div>
               </div>
-                        
-</div>
-                        <div style="background:#080a19;">
+          </nav>
+        </div>
+
+
+
+ <a href="javascript:history.go(-1)"> <h3><b><u><span class="glyphicon glyphicon-step-backward"></span>VOLVER</u></b></h3>  </a>
+
+              <div class="row">
+                <div class="col-sm-2">
+                  
+                  <span><h3><b><u>Listado de categorias</u></b></h3></span>
+
+                  <ul>
+                       
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 8])}}"><h3>recursos</h3></a>
+                        </li>
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 5])}}"><h3>errores</h3></a>
+                        </li>
+
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 3])}}"><h3>Idiomas</h3></a>
+                        </li>
+
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 4])}}"><h3>C#</h3></a>
+                        </li>
+
+
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 1])}}"><h3>HTML</h3></a>
+                        </li>
+
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 2])}}"><h3>PHP</h3></a>
+                        </li>
+
+                        <li class="nav-item px-3">
+                          <a href="{{url ('resultados',['id' => 9])}}"><h3>Interesantes</h3></a>
+                        </li>
+                          <li><a href="{{url ('resultados',['id' => 7])}}"><h3>Siglas</h3></a></li>
+                        <li><a href="{{url ('resultados',['id' =>6])}}"><h3>Terminos</h3></a></li>
+                      </ul>
+                </div>
+                <div class="col-sm-8" >
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        @yield('content')
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+
+              <div style="background:#080a19;">
 
 
                         <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>

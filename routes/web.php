@@ -11,18 +11,10 @@
 |
 */
 
-Route::get('/', 'temaController@index')->name('home');
+Route::get('/', 'ThemeController@index')->name('home');
+Route::resource('temas', 'ThemeController');
+Route::get('/search', 'ThemeController@search');
+Route::get('/resultados/{id}', 'ThemeController@listado');
+Route::get('tema/{id}', 'ThemeController@results');
 
-Route::get('tema/{id}', 'temaController@results');
-
-
-
-Route::post('/guardar', 'temaController@store');
-
-Route::get('/falta', 'temaController@falta');
-
-Route::post('/editar', 'temaController@edit')->name('edit');
-
-
-Route::get('/search', 'temaController@search');
-Route::get('/resultados/{id}', 'temaController@listado');
+//a las rutas tipo resource no les defines una accion..

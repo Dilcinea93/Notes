@@ -1,10 +1,7 @@
-@extends('layout')
-@section('title','Registrar')
 
+@section('form')
 
-@section('content')
-              
-              <form action="{{url('/guardar')}}" method="post">
+<form action="{{ route('temas.store') }}" method="post">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -26,5 +23,6 @@
 
                             <button class="btn btn-info btn-block" type="submit">REGISTRAR INFORMACION</button>
                         </form>
-@endsection
 
+                        
+@endsection
