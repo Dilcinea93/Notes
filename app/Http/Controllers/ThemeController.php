@@ -93,10 +93,8 @@ class ThemeController extends Controller
     }
 
      public function search(Request $request){
-        $search= DB::table('tema')
-        ->where('titulo','like', '%'.$request['search'].'%')
-        ->get();
-        return view('resultados',compact('search'));
+        $search= temas::where('titulo','like', '%'.$request['search'].'%')
+        ->get();        return view('resultados',compact('search'));
     }
 
      public function listado(Request $request){

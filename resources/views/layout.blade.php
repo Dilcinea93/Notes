@@ -8,8 +8,7 @@
 -->
 
 <html lang="en">
-  <head>
-    <base href="./">
+  <head>    <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -88,14 +87,14 @@
 
 
 
+              <div class="row">
+                <div class="col-sm-2" class="lista" style="color:#fff;background: #000">
+                  
  <a href="javascript:history.go(-1)"> <h3><b><u><span class="glyphicon glyphicon-step-backward"></span>VOLVER</u></b></h3>  </a>
 
-              <div class="row">
-                <div class="col-sm-2">
-                  
                   <span><h3><b><u>Listado de categorias</u></b></h3></span>
 
-                  <ul>
+                  <ul style="list-style: none">
                        
                         <li class="nav-item px-3">
                           <a href="{{url ('resultados',['id' => 8])}}"><h3>recursos</h3></a>
@@ -139,7 +138,7 @@
                 </div>
               </div>     
 
-              <div style="background:#080a19;">
+              <div style="background:#000;">
 
 
                         <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>

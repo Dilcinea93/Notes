@@ -9,6 +9,8 @@
 	<li>
 		-Ajustar el dise;o
 	</li>
+	<li>Hacer que se reinicie el contdor de ID cuando elimine algun post... o que el ID quede de forma secuencial</li>
+	<li>Crear mensajes de error para cuando haya errores</li>
 
 	<li> -Validar el formulario de titulo, post y eso.. ver que no tenga errores</li>
 	<LI>
@@ -23,6 +25,7 @@
 	<li>hacer el delete y update con ajax</li>
 	<li>hacer que el navbar sea responsive</li>
 	<li>Hacer que se vean todos los post en RECENT POSTS</li>
+	<li>Integrar en un iframe para hacer mapas mentales (Futuro)</li>
 </ul>
 
 
