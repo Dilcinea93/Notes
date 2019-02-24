@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title','Resultados')
+@section('title','Editar post')
 
 @section('content')
 

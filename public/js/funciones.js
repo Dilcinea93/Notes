@@ -4,7 +4,7 @@ $( document ).ready(function() {
 			var id= $('#id').val();
 			var token=$("input[name=_token]").val();
 			// var url= "http:\\localhost:puerto\Controler.php"
-			var url="/editar";
+			var url="temas/";
 			//var token= $('meta[name="csrf-token"]').attr('content'); los comente para probar enviando la peticion por get... 
 			//me trae la vista, pero ni me trae los datos enviados a esa vista ni renderiza la vista en el navegador sino en el preview
 			$.ajax({
@@ -13,12 +13,10 @@ $( document ).ready(function() {
 		        data: {id},
    				headers:{'X-CSRF-TOKEN':token},
 		        dataType: "json",
-		        method: "POST",
+		        method: "PUT",
 
 			}).done( function() {
-
 		    alert( 'Success!!' );
-
 		});
 	});
 });

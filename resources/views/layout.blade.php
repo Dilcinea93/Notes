@@ -59,7 +59,7 @@
    
 
         <!-- Breadcrumb-->
-        <div style="width:100%;background:red;">
+        <div style="width:100%">
            <nav class="app-header navbar nav navbar-inverse">
             <div class="col-sm-3">
               
@@ -123,8 +123,11 @@
                         <li class="nav-item px-3">
                           <a href="{{url ('resultados',['id' => 9])}}"><h3>Interesantes</h3></a>
                         </li>
-                          <li><a href="{{url ('resultados',['id' => 7])}}"><h3>Siglas</h3></a></li>
-                        <li><a href="{{url ('resultados',['id' =>6])}}"><h3>Terminos</h3></a></li>
+                          <li class="nav-item px-3"><a href="{{url ('resultados',['id' => 7])}}"><h3>Siglas</h3></a></li>
+                        <li class="nav-item px-3"><a href="{{url ('resultados',['id' =>6])}}"><h3>Terminos</h3></a></li>
+
+
+                        <li class="nav-item px-3"><a href="{{url ('falta')}}"><h3>FALTA</h3></a></li>
                       </ul>
                 </div>
                 <div class="col-sm-8" >

@@ -76,7 +76,12 @@ class ThemeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        temas::find($id)->update($request->all());
+        temas::find($id)
+        ->update(
+            ['titulo' => $request['titulo'], 
+            'post'=> $request['post'],
+            'categoria_id'=> $request['categoria'],
+            ]);
         return redirect()->route('home')->with('success','Registro actualizado satisfactoriamente');
     }
 
@@ -93,8 +98,8 @@ class ThemeController extends Controller
     }
 
      public function search(Request $request){
-        $search= temas::where('titulo','like', '%'.$request['search'].'%')
-        ->get();        return view('resultados',compact('search'));
+        $resultados= temas::where('titulo','like', '%'.$request['search'].'%')
+        ->get();       return view('lista',compact('resultados'));
     }
 
      public function listado(Request $request){
@@ -105,5 +110,8 @@ class ThemeController extends Controller
     public function results(Request $request){
         $posts=temas::where('id', $request['id'])->get();
         return view('info',compact('posts','titulo'));
+    }
+    public function falta(){
+        return view('falta');
     }
 }
