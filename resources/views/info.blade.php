@@ -33,7 +33,7 @@
 				
 
 				<div class="col-sm-6">
-					<a class="btn btn-primary btn-xs" id="editar" ><span class="glyphicon glyphicon-pencil"></span>ACTUALiZAR</a>
+					<a class="btn btn-primary btn-xs" id="editar"><span class="glyphicon glyphicon-pencil"></span>ACTUALiZAR</a>
 				</div>	
 
 				<div class="col-sm-6">

@@ -16,7 +16,7 @@ class Post extends Model
 	 * @param Integer $maxLength Maximum length the excerpt may be
 	 * @return String excerpt
 	 */
-	public static function getExcerpt($str, $startPos = 0, $maxLength = 50) {
+	public static function getExcerpt($str, $startPos = 0, $maxLength = 5) {
 		if(strlen($str) > $maxLength) {
 			$excerpt   = substr($str, $startPos, $maxLength - 6);
 			$lastSpace = strrpos($excerpt, ' ');

@@ -60,7 +60,7 @@ class ThemeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) // RUTA GET. Si hago una peticion POST a esta ruta, de bolas que tendre MethodNotAllowed (405)
     {
         $categorias=categoria::all();
         $temas=temas::find($id);
@@ -99,12 +99,22 @@ class ThemeController extends Controller
 
      public function search(Request $request){
         $resultados= temas::where('titulo','like', '%'.$request['search'].'%')
-        ->get();       return view('lista',compact('resultados'));
+
+    ->orWhere('post','like', '%'.$request['search'].'%')
+        ->get();      
+// $temas=temas::orderBy('id','DESC').paginate(3)
+
+$cantidad= count($resultados);
+
+        return view('lista',compact('resultados','cantidad'));
     }
 
      public function listado(Request $request){
         $resultados=temas::where('categoria_id', $request['id'])->get();
-        return view('lista',compact('resultados'));
+        
+$cantidad= count($resultados);
+
+        return view('lista',compact('resultados','cantidad'));
     }
 
     public function results(Request $request){
