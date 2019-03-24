@@ -3,7 +3,6 @@
 
 @section('content')
 
-<form  method="post" action="{{ route('temas.update',$temas->id) }}" role="form">
                 {{ csrf_field() }}
 
 							<input name="_method" type="hidden" value="PATCH">
@@ -28,8 +27,7 @@
                             </textarea>
 
                             <button class="btn btn-info btn-block" type="submit">Actualizar</button>
-                        </form>
-
+                    
 @endsection
 
 <!-- 

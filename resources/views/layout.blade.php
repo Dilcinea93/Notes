@@ -153,7 +153,7 @@
                                 <li >
                                   <h3>
                                     
-                                  <a style="color:white;" href="{{url ('tema',['id' => $post->id])}}"> {!! $post->titulo!!}</a>
+                                  <a style="color:white;" href="{{route ('temas.show',['id' => $post->id])}}"> {!! $post->titulo!!}</a>
 
                                   </h3>
                                 </li>

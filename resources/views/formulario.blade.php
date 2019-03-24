@@ -1,4 +1,8 @@
-
+ <script type="text/javascript">
+  $(document).on('click','.edit',function(){
+    alert('hola');
+  });
+    </script>
 <form action="{{url('/guardar')}}" method="post">
                 {{ csrf_field() }}
 
@@ -18,6 +22,8 @@
                             <textarea class="ckeditor" name="post" id="editor1" rows="10" cols="80">
                                 Este es el textarea que es modificado por la clase ckeditor
                             </textarea>
+
+                            <button class="edit">PResioname</button>
 
                             <button class="btn btn-info btn-block" type="submit">REGISTRAR INFORMACION</button>
                         </form>

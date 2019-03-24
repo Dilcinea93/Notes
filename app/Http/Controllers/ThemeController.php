@@ -36,11 +36,18 @@ class ThemeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function show($id) //una ruta show de un contrlador tipo resource recibe un parametro ID, no un request, ya que no puede recuperar los datos de Request. Si lo haces con request e intentas recuperar un dato del request como si esta fuera una ruta de una peticion get o post normal ( no resource, asi $request['titulo']) te dara error..
+    {
+         $posts=temas::where('id', $id)->get();
+
+         //pero todavia no logro renderizar el resultado en la misma pagina
+        return view('info',compact('posts','titulo'));
+    }
+
     public function store(Request $request)
     {
         //
         // $this->validate($request,[ 'nombre'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
-        
         temas::create(['titulo' => $request['titulo'], 
         'post'=> $request['post'],
         'categoria_id'=> $request['categoria'],
