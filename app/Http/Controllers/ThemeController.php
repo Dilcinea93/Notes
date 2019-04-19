@@ -22,26 +22,35 @@ class ThemeController extends Controller
         $categorias=categoria::all();
         $posts=temas::take(3)->orderBy('id', 'desc')->get();
         // $temas=temas::orderBy('id','DESC')->paginate(3);
+
+
         return view('home',compact('categorias','posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) //una ruta show de un contrlador tipo resource recibe un parametro ID, no un request, ya que no puede recuperar los datos de Request. Si lo haces con request e intentas recuperar un dato del request como si esta fuera una ruta de una peticion get o post normal ( no resource, asi $request['titulo']) te dara error..
+    public function search(Request $request)
     {
-         $posts=temas::where('id', $id)->get();
+        $resultados= temas::where('titulo','like', '%'.$request['search'].'%')
+        ->orWhere('post','like', '%'.$request['search'].'%')->paginate(3);
+        $cantidad_posts= count($resultados);
 
-         //pero todavia no logro renderizar el resultado en la misma pagina
-        return view('info',compact('posts','titulo'));
+        foreach($resultados as $resultado){
+
+            $title_post=$resultado->titulo;
+            $post_title=explode(' ',$title_post); //array con palabras distintas de cada titulo
+
+            for ($i=0; $i < count($post_title); $i++) { 
+                # code...
+                if($post_title[$i]==$request['search'] || $post_title[$i]== strtoupper($request['search'])){
+                    $post_title[$i]='<b> '.$request['search'].'</b>';
+                    $title_post= implode($post_title);
+                    $resultado->titulo=$title_post;
+                }
+            }
+        }
+
+        $palabra= $request['search'];
+        $cantidad= count($resultados);
+        return view('lista',compact('resultados','cantidad','palabra','title_post'));
     }
 
     public function store(Request $request)
@@ -54,19 +63,12 @@ class ThemeController extends Controller
         ]);
         return redirect()->route('home');
     }
+    public function destroy($id)
+    {
+        temas::find($id)->delete();
+        return redirect()->route('home')->with('success','Registro eliminado satisfactoriamente');
+    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id) // RUTA GET. Si hago una peticion POST a esta ruta, de bolas que tendre MethodNotAllowed (405)
     {
         $categorias=categoria::all();
@@ -74,13 +76,6 @@ class ThemeController extends Controller
         return view('edit',compact('temas','categorias'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         temas::find($id)
@@ -92,43 +87,24 @@ class ThemeController extends Controller
         return redirect()->route('home')->with('success','Registro actualizado satisfactoriamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function listado(Request $request)
     {
-        temas::find($id)->delete();
-        return redirect()->route('home')->with('success','Registro eliminado satisfactoriamente');
-    }
-
-     public function search(Request $request){
-        $resultados= temas::where('titulo','like', '%'.$request['search'].'%')
-
-    ->orWhere('post','like', '%'.$request['search'].'%')
-        ->get();      
-// $temas=temas::orderBy('id','DESC').paginate(3)
-
-$cantidad= count($resultados);
-
-        return view('lista',compact('resultados','cantidad'));
-    }
-
-     public function listado(Request $request){
-        $resultados=temas::where('categoria_id', $request['id'])->get();
+        $resultados=temas::where('categoria_id', $request['id'])->paginate(3);
+        $cantidad= count($resultados);
+        $post_txt='';
         
-$cantidad= count($resultados);
-
+        // dd($resultados);
         return view('lista',compact('resultados','cantidad'));
     }
 
-    public function results(Request $request){
+    public function results(Request $request)
+    {
         $posts=temas::where('id', $request['id'])->get();
         return view('info',compact('posts','titulo'));
     }
-    public function falta(){
-        return view('falta');
-    }
+    public function show($id) //una ruta show de un contrlador tipo resource recibe un parametro ID, no un request, ya que no puede recuperar los datos de Request. Si lo haces con request e intentas recuperar un dato del request como si esta fuera una ruta de una peticion get o post normal ( no resource, asi $request['titulo']) te dara error..
+    {
+        $posts=temas::where('id', $id)->get();
+        return view('info',compact('posts','titulo'));
+    } 
 }

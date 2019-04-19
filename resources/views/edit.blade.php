@@ -1,11 +1,12 @@
-@extends('layout')
+@extends('layouts.layout')
 @section('title','Editar post')
 
 @section('content')
 
+              <form method="post" action="{{url('update',['id' => $temas->id])}}" role="form">
                 {{ csrf_field() }}
 
-							<input name="_method" type="hidden" value="PATCH">
+							<!-- <input name="_method" type="hidden" value="PATCH"> -->
 
 <!-- No se para que es este campo patch, pero si lo quito me da error de methodNotAllowed. Dice No Message -->
 
@@ -28,6 +29,7 @@
 
                             <button class="btn btn-info btn-block" type="submit">Actualizar</button>
                     
+ </form>
 @endsection
 
 <!-- 
