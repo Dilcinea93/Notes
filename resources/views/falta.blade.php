@@ -4,12 +4,12 @@
 @section('content')
 <h4> Mas faciles</h4>
 <ul>
-	<li>poner un hover de css a los descriptores</li>
 
 		<li>Limpiar el codigo, unificar funciones</li>
 	<li>
-		-Ajustar el dise;o
+		-Ajustar el diseño de paginador
 	</li>
+	<li>	Hacerle un diseño del footer</li>
 	<li>Hacer que se vean todos los post en RECENT POSTS</li>
 </ul>
 

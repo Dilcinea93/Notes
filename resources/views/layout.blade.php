@@ -125,7 +125,7 @@
                 <div class="col-sm-8" >
                   <div class="container">
                     <div class="row">
-                      <div class="col-sm-12">
+                      <div class="col-sm-12" style="background: #ffffff">
                         @yield('content')
                       </div>
                     </div>
@@ -133,7 +133,7 @@
                 </div>
               </div>     
 
-              <div style="background:#000;">
+              <div style="background:#27282F;">
 
 
                         <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>

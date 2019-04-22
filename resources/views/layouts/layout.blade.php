@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+ <!DOCTYPE html>
 
 <html lang="en">
   <head>
@@ -11,15 +13,16 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>@yield('title') - DigiNote</title>
     <!-- Icons-->
-    <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
-    <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-    <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <link href="{{asset('/bootstrap4.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet"> -->
+   <!--  <link href="{{asset('vendors/pace-progress/css/pace.min.css')}}" rel="stylesheet"> -->
     <!-- Global site tag (gtag.js) - Google Analytics-->
+ <script src="{{asset('bootstrap4.1-dist/js/bootstrap.min.js')}}"></script>
 
+    <link href="{{asset('css/jumbotron.css')}}" rel="stylesheet">
+
+  <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('/vendors/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('/js/funciones.js')}}"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -35,110 +38,119 @@
       // Bootstrap ID
       gtag('config', 'UA-118965717-5');
     </script>
+    <style type="text/css">
+      li:hover{
+        background: #3F62E4;
+      }
+      a{
+        color:#fff;
+      }
+      
+      .lista a{
+        color:green;
+      }
+      
+      a:hover{
+        color:green;
+      }
+    </style>
   </head>
 
-
-  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-    <header class="app-header navbar">
-      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <img class="navbar-brand-full" src="{{url('/img/favicon.ico')}}" height="25">   </br>  <a class="navbar-brand"  href="{{route('home')}}" >DigiNote</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-        <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
-      </a>
-      <form action="{{url('/search')}}" method="get">
-                            {{ csrf_field() }}
-                    <div> 
-                      <button type="submit" class="btn btn-success">
-                     <span class="glyphicon glyphicon-search"> </span> SEARCH</button>
-                    </div>
 
-                    <div>
-                           
-                     <input type="text" name="search" id="search" placeholder="Busca por palabra o categoria" class="form-control">
-                    </div>
-                  </form>
-     
-    </header>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault" style="margin-left: 640px; ">
+        
+        <form class="form-inline my-2 my-lg-0"  action="{{url('/search')}}" method="get">
 
-    
-    <div class="app-body">
-      <div class="sidebar">
+           {{ csrf_field() }}
+          <input class="form-control mr-sm-2" type="text" aria-label="Search" name="search" id="search" placeholder="Busca por palabra o categoria" style="width:500px;">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
 
-          <a href="javascript:history.go(-1)"> <span class="glyphicon glyphicon-step-backward"></span><h3><b><u>VOLVER</u></b></h3>  </a>
+      <div class="row"> 
+          <div class="col-sm-2" style="background: #001b01">
+               <a href="javascript:history.go(-1)"> <span class="glyphicon glyphicon-step-backward"></span><h3><b><u>VOLVER</u></b></h3>  </a>
 
-        <span><h3>Categorias</h3></span>
         <nav class="sidebar-nav">
 
 
-          <ul style="list-style: none" class="nav">
+          <ul style="list-style: none">
             <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 8])}}" class="nav-link"><h3>recursos</h3></a>
+              <a href="{{url ('resultados',['id' => 8])}}" class="nav-link"><h4>recursos</h4></a>
             </li>
             <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 5])}}" class="nav-link"><h3>errores</h3></a>
-            </li>
-
-            <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 3])}}" class="nav-link"><h3>Idiomas</h3></a>
+              <a href="{{url ('resultados',['id' => 5])}}" class="nav-link"><h4>errores</h4></a>
             </li>
 
             <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 4])}}" class="nav-link"><h3>C#</h3></a>
+              <a href="{{url ('resultados',['id' => 3])}}" class="nav-link"><h4>Idiomas</h4></a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{url ('resultados',['id' => 4])}}" class="nav-link"><h4>C#</h4></a>
             </li>
 
 
             <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 1])}}" class="nav-link"><h3>HTML</h3></a>
+              <a href="{{url ('resultados',['id' => 1])}}" class="nav-link"><h4>HTML</h4></a>
             </li>
 
             <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 2])}}" class="nav-link"><h3>PHP</h3></a>
+              <a href="{{url ('resultados',['id' => 2])}}" class="nav-link"><h4>PHP</h4></a>
             </li>
             <li class="nav-item">
-              <a href="{{url ('resultados',['id' => 9])}}" class="nav-link"><h3>Interesantes</h3></a>
+              <a href="{{url ('resultados',['id' => 9])}}" class="nav-link"><h4>Interesantes</h4></a>
             </li>
-              <li class="nav-item"><a href="{{url ('resultados',['id' => 7])}}" class="nav-link"><h3>Siglas</h3></a></li>
-            <li class="nav-item"><a href="{{url ('resultados',['id' =>6])}}" class="nav-link"><h3>Terminos</h3></a></li>
+              <li class="nav-item"><a href="{{url ('resultados',['id' => 7])}}" class="nav-link"><h4>Siglas</h4></a></li>
+            <li class="nav-item"><a href="{{url ('resultados',['id' =>6])}}" class="nav-link"><h4>Terminos</h4></a></li>
           </ul>
 
           
         </nav>
-        <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-      </div>
-      <main class="main">
-        <!-- Breadcrumb-->
-        
-        <div class="container-fluid">
-         <!--  @directive1  directiva personalizada. Se definen ejecutando un comando en la terminal, creando un Service provider, defines el metodo, lo registras en el archivo general de service Providers y antes de usarlo ejecuta php artisan view:clear. Luego usalo asi como aqui.
+          </div>
+          <div class="col-sm-9">
+              <!--  @directive1  directiva personalizada. Se definen ejecutando un comando en la terminal, creando un Service provider, defines el metodo, lo registras en el archivo general de service Providers y antes de usarlo ejecuta php artisan view:clear. Luego usalo asi como aqui.
          Igual te dejo un tutorial en este sistema -->
 
           @yield('content')
-        </div>
-      </main>
-    </div>
-
-    <footer class="app-footer">
-      <div>
-        <a href="https://coreui.io">CoreUI</a>
-        <span>&copy; 2018 creativeLabs.</span>
-      </div>
-      <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="https://coreui.io">CoreUI</a>
-      </div>
-    </footer>
-    <!-- CoreUI and necessary plugins-->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/pace-progress/pace.min.js"></script>
-    <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-    <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
-    <!-- Plugins and scripts required by this view-->
-    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-    <script src="node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
-    <script src="js/main.js"></script>
+          </div>
+      </div>  
   </body>
-</html>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+<div style="background:#000;">
+
+
+                        <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>
+
+                        @if(!empty($posts))
+                          <div class="row">
+                              @foreach($posts as $post)
+                              <ul style="list-style: none;">
+                                <li >
+                                  <h3>
+                                    
+                                  <a style="color:white;" href="{{route ('temas.show',['id' => $post->id])}}"> {!! $post->titulo!!}</a>
+
+                                  </h3>
+                                </li>
+                              </ul>
+                              @endforeach
+                            </div>
+                        @else
+                              
+
+                          <h2>Aun no hay ningun post</h2>
+                        @endif
+                        </div>
+
+</footer>
+<!-- Footer -->
+  </html>
