@@ -14,15 +14,10 @@
     <title>@yield('title') - DigiNote</title>
     <!-- Icons-->
     <!-- Main styles for this application-->
-    <link href="{{asset('/bootstrap4.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet"> -->
-   <!--  <link href="{{asset('vendors/pace-progress/css/pace.min.css')}}" rel="stylesheet"> -->
-    <!-- Global site tag (gtag.js) - Google Analytics-->
- <script src="{{asset('bootstrap4.1-dist/js/bootstrap.min.js')}}"></script>
-
-    <link href="{{asset('css/jumbotron.css')}}" rel="stylesheet">
-
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
   <script src="{{asset('js/jquery.min.js')}}"></script>
+ <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <!-- <link href="{{asset('css/jumbotron.css')}}" rel="stylesheet"> -->
     <script src="{{asset('/vendors/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('/js/funciones.js')}}"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
@@ -56,14 +51,13 @@
     </style>
   </head>
 
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <img class="navbar-brand-full" src="{{url('/img/favicon.ico')}}" height="25">   </br>  <a class="navbar-brand"  href="{{route('home')}}" >DigiNote</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault" style="margin-left: 640px; ">
+    <nav class="navbar navbar-inverse">
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-2" style="margin-left:30px; ">
+          
+          <img class="navbar-brand-full" src="{{url('/img/favicon.ico')}}" height="25"> <a class="navbar-brand"  href="{{route('home')}}" >DigiNote</a>
+        </div>
+      <div class="collapse navbar-collapse col-sm-2" id="navbarsExampleDefault" style="margin-left: 340px; ">
         
         <form class="form-inline my-2 my-lg-0"  action="{{url('/search')}}" method="get">
 
@@ -71,12 +65,25 @@
           <input class="form-control mr-sm-2" type="text" aria-label="Search" name="search" id="search" placeholder="Busca por palabra o categoria" style="width:500px;">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
+        <div>
+          
+        </div>
+      </div>
+          <div class="col-sm-1" style="">
+           <a href="{{url ('respaldo')}}"><span class="glyphicon glyphicon-save"></span>&nbsp;&nbsp;Respaldo</a>
+        
+          </div>
+          <div class="col-sm-1" style="">
+           <a href="https://context.reverso.net/traduccion/"><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp;Traductor</a>
+        
+          </div>
       </div>
     </nav>
 
       <div class="row"> 
           <div class="col-sm-2" style="background: #001b01">
-               <a href="javascript:history.go(-1)"> <span class="glyphicon glyphicon-step-backward"></span><h3><b><u>VOLVER</u></b></h3>  </a>
+               <a href="javascript:history.go(-1)"> <span class="glyphicon glyphicon-step-backward"></span><b><u>VOLVER</u></b> </a>
 
         <nav class="sidebar-nav">
 
@@ -118,7 +125,6 @@
           <div class="col-sm-9">
               <!--  @directive1  directiva personalizada. Se definen ejecutando un comando en la terminal, creando un Service provider, defines el metodo, lo registras en el archivo general de service Providers y antes de usarlo ejecuta php artisan view:clear. Luego usalo asi como aqui.
          Igual te dejo un tutorial en este sistema -->
-
           @yield('content')
           </div>
       </div>  
@@ -128,27 +134,30 @@
 <div style="background:#000;">
 
 
-                        <h2 class="bold" style="color:white;font-weight: bold">RECENT POSTS</h2>
+                        <h2 class="bold" style="color:white;font-weight: bold">RECENT <mark>POSTS</mark></h2>
 
-                        @if(!empty($posts))
                           <div class="row">
-                              @foreach($posts as $post)
+                        @if(!empty($recent))
+                              @foreach($recent as $recien)
+                              <div class="col-sm-4">
                               <ul style="list-style: none;">
                                 <li >
                                   <h3>
                                     
-                                  <a style="color:white;" href="{{route ('temas.show',['id' => $post->id])}}"> {!! $post->titulo!!}</a>
+                                  <a style="color:white;" href="{{url ('tema',['id' => $recien->id])}}"> {!! $recien->titulo!!}</a>
 
                                   </h3>
                                 </li>
-                              </ul>
+                              </ul></div>
                               @endforeach
-                            </div>
                         @else
                               
 
                           <h2>Aun no hay ningun post</h2>
                         @endif
+
+
+                            </div>
                         </div>
 
 </footer>

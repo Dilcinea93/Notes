@@ -24,6 +24,8 @@ Route::post('/update/{id}', 'ThemeController@update');
 Route::get('/resultados/{id}', 'ThemeController@listado');
 Route::get('tema/{id}', 'ThemeController@results');
 
+Route::get('respaldo', 'ThemeController@respaldo');
+
 
 
 // Route::get('/indexpost', 'PostsController@index');
