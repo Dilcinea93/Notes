@@ -31,7 +31,7 @@ class ThemeController extends Controller
     public function search(Request $request)
     {
         $resultados= temas::where('titulo','like', '%'.$request['search'].'%')
-        ->orWhere('post','like', '%'.$request['search'].'%')->paginate(6);
+        ->orWhere('post','like', '%'.$request['search'].'%')->paginate(4);
         $cantidad_posts= count($resultados);
 
         foreach($resultados as $resultado){
@@ -91,18 +91,20 @@ class ThemeController extends Controller
 
     public function listado(Request $request)
     {
-        $resultados=temas::where('categoria_id', $request['id'])->orderBy('id', 'DESC')->paginate(6);
+        $resultados=temas::where('categoria_id', $request['id'])->orderBy('id', 'DESC')->paginate(4);
         $cantidad= count($resultados);
         $post_txt='';
         
         // dd($resultados);
-        return view('lista',compact('resultados','cantidad'));
+        $recent=temas::orderBy('id', 'desc')->get();
+        return view('lista',compact('resultados','cantidad','recent'));
     }
 
     public function results(Request $request)
     {
+        $recent=temas::orderBy('id', 'desc')->get();
         $postss=temas::where('id', $request['id'])->get();
-        return view('info',compact('postss'));
+        return view('info',compact('postss','recent'));
     }
      //una ruta show de un contrlador tipo resource recibe un parametro ID, no un request, ya que no puede recuperar los datos de Request. Si lo haces con request e intentas recuperar un dato del request como si esta fuera una ruta de una peticion get o post normal ( no resource, asi $request['titulo']) te dara error..
         // {

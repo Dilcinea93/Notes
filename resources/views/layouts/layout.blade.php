@@ -57,7 +57,7 @@
           
           <img class="navbar-brand-full" src="{{url('/img/favicon.ico')}}" height="25"> <a class="navbar-brand"  href="{{route('home')}}" >DigiNote</a>
         </div>
-      <div class="collapse navbar-collapse col-sm-2" id="navbarsExampleDefault" style="margin-left: 340px; ">
+      <div class="collapse navbar-collapse col-sm-2" id="navbarsExampleDefault" style="margin-left: 240px; ">
         
         <form class="form-inline my-2 my-lg-0"  action="{{url('/search')}}" method="get">
 
@@ -76,6 +76,10 @@
           </div>
           <div class="col-sm-1" style="">
            <a href="https://context.reverso.net/traduccion/"><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp;Traductor</a>
+        
+          </div>
+          <div class="col-sm-1" style="">
+           <a href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;Ayuda</a>
         
           </div>
       </div>
