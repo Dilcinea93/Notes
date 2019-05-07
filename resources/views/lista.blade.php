@@ -32,7 +32,7 @@ Resultados con la palabra {{$palabra}}
 
 		      			</td>
 		      			<td style="width:20%;">
-		      				<a class="btn button btn-danger btn-xs" href="{{url('destroy',['id' => $resultado->id])}}" style="color:#fff;"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
+		      				<a class="btn button btn-danger btn-xs" href="{{url('destroy',['id' => $resultado->id])}}" style="color:#fff;" id="eliminar"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
 		      			</td>
 		      		</tr>
 		      	</table>

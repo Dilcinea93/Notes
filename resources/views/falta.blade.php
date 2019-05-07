@@ -3,7 +3,7 @@
 
 @section('content')
 http://localhost/guias/resources/views/layout-bootstrap.php. Los links dentro de mi pagina, que sean paginas que yo haga practicando y asi, deben vinculrse con esta ruta...
-Y seran con extension php. no, usaran blade, asi qie los assets tampoco ,e sirven.
+Y seran con extension php. no usaran blade, asi qie los assets tampoco ,e sirven.
 
 <h4> Mas faciles</h4>
 <ul>

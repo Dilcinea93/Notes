@@ -2,28 +2,7 @@
 @section('title','Informacion')
 
 @section('content')
-<script type="text/javascript">
-	$( document ).ready(function() {
-		//no se porque no captura el dato
-  $(document).on('click','#editar',function(e){
 
-		e.preventDefault();
-var id = $("#id_post").val();
-     $.ajax({
-      type: 'GET',
-     url: 'temas/'+id,  //laravel no esta agarrando esta ruta del controlador resource, sino de una ruta que ya existia en routes.web, por lo tanto como yo quiero hacer esta peticion ajax y las rutas de web.php son las que se recargan, por eso la pagina se sigue recargando, porque no la toma del controlador resource
-      data: {
-      	//no se porque me lleva a temas/undefined/edit... aun si le mando solo temas y edit... Esto me pasaba porque al intentar capturarla con el . (class), no estaba capturandola. Lo intente con ID y si...
-                    '_token': $('input[name=_token]').val(),
-                    'id_': $("#id_post").val(),
-                    'categoria': $("#categoria").val(),
-                    'titulo': $('#titulo').val(),
-                    // 'post': $('#editor1').val() no se porque no captura este dato pero es por la clase ckeditor.... si le quito la clase, si lo guarda. 
-                }
-     });
-  });
-  });
-    </script>
     <style type="text/css">
     	
     	.boton a{
@@ -62,7 +41,7 @@ var id = $("#id_post").val();
 					 <!-- <form action="{{action('ThemeController@destroy', $post->id)}}" method="post"> -->
                    <!-- {{csrf_field()}} -->
                    <!-- <input name="_method" type="hidden" value="DELETE"> -->
-                   <a class="btn btn-danger btn-xs" href="{{url('destroy',['id' => $post->id])}}"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
+                   <a class="btn btn-danger btn-xs"  id="eliminar"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
                <!-- </form> -->
 				</div>	
 			</div>
