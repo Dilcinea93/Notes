@@ -10,18 +10,16 @@ Y seran con extension php. no usaran blade, asi qie los assets tampoco ,e sirven
 	<li>Limpiar el codigo, unificar funciones</li>
 	<li>Subir el sistema al repositorio</li>
 	<li>Hacer un alert de confirmacion antes del boton de eliminar. Hacer un pop up con javascript y si digo que si, llame a la ruta destroy</li>
-	<li>Hacer seccion de ayuda... Para decir como se puede usar, hacer los links a la pagina, hacer las busquedas.</li>
-
 </ul>
 
 <h3>	Mas dificiles</h3>
 <ul>
 
-<li> si es posible Modificar ckeditor para incluir la etiqueta CODE y la etiqueta de ENTRADA DEL USUARIO</li>
+<li> si es posible Modificar ckeditor para incluir la etiqueta CODE y PRE</li>
 	
+	<LI>hacer que en la pagina de ayuda cuando le de click a un titulo, se vaya bajando hasta el post.</LI>
 	<li>Subir la pagina a un hosting</li>
 	<li>Terminar modulo de respaldo de base de datos</li>
-	<li>Hacer que se pueda guardar la imagen de captura de pantalla</li>
 	<li>integrar un editor de codigo como el de stack overflow</li>
 </ul>
 

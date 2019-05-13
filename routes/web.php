@@ -25,6 +25,7 @@ Route::get('/resultados/{id}', 'ThemeController@listado');
 Route::get('tema/{id}', 'ThemeController@results');
 
 Route::get('respaldo', 'ThemeController@respaldo');
+Route::get('help', 'ThemeController@help');
 
 
 

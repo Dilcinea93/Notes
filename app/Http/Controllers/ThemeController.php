@@ -30,28 +30,36 @@ class ThemeController extends Controller
 
     public function search(Request $request)
     {
+
+        $recent=temas::orderBy('id', 'desc')->get();
         $resultados= temas::where('titulo','like', '%'.$request['search'].'%')
         ->orWhere('post','like', '%'.$request['search'].'%')->paginate(4);
         $cantidad_posts= count($resultados);
-
+        
+            if($cantidad_posts==0){
+                    $title_post="No hay post registrados";
+            }else{
         foreach($resultados as $resultado){
+                     $title_post=$resultado->titulo;
+                            $post_title=explode(' ',$title_post); //array con palabras distintas de cada titulo
 
-            $title_post=$resultado->titulo;
-            $post_title=explode(' ',$title_post); //array con palabras distintas de cada titulo
+                            for ($i=0; $i < count($post_title); $i++) { 
+                                # code...
+                                if($post_title[$i]==$request['search'] || $post_title[$i]== strtoupper($request['search'])){
 
-            for ($i=0; $i < count($post_title); $i++) { 
-                # code...
-                if($post_title[$i]==$request['search'] || $post_title[$i]== strtoupper($request['search'])){
-                    $post_title[$i]='<b> '.$request['search'].'</b>';
-                    $title_post= implode($post_title);
-                    $resultado->titulo=$title_post;
-                }
+                                    $post_title[$i]='<b> '.$request['search'].' </b>';
+                                    $title_post= implode($post_title);
+                                    
+                                    $resultado->titulo=$title_post;
+                                }
+                                $post_title[$i]=$post_title[$i].' ';
+                               
+                            }
             }
         }
-
         $palabra= $request['search'];
         $cantidad= count($resultados);
-        return view('lista',compact('resultados','cantidad','palabra','title_post'));
+        return view('lista',compact('resultados','cantidad','palabra','title_post','recent'));
     }
 
     public function store(Request $request)
@@ -73,9 +81,10 @@ class ThemeController extends Controller
 
     public function edit($id) // RUTA GET. Si hago una peticion POST a esta ruta, de bolas que tendre MethodNotAllowed (405)
     {
+        $recent=temas::orderBy('id', 'desc')->get();
         $categorias=categoria::all();
         $temas=temas::find($id);
-        return view('edit',compact('temas','categorias'));
+        return view('edit',compact('temas','categorias','recent'));
     }
 
     public function update(Request $request, $id)
@@ -116,5 +125,10 @@ class ThemeController extends Controller
     {
         // $posts=temas::where('id', $request['id'])->get();
         // return view('info',compact('posts'));
+    }
+    public function help()
+    {
+        $recent=temas::orderBy('id', 'desc')->get();
+        return view('help',compact('recent'));
     }
 }

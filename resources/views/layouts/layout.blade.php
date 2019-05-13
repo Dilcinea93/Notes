@@ -79,7 +79,7 @@
         
           </div>
           <div class="col-sm-1" style="">
-           <a href="#"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;Ayuda</a>
+           <a href="{{url ('help')}}"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;&nbsp;Ayuda</a>
         
           </div>
       </div>
