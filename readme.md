@@ -8,9 +8,5 @@ El editor proporcionado por CKEditor trae varias funcionalidades que probablemen
 
 Se continua optimizando y haciendo crecer la idea, para quienes les guste. Para mi ha sido de utilidad.
 
-En la version actual del desarrollo, los links para hacer referencia a un documento de codigo, pueden referenciarse usando la siguiente ruta para generar un vinculo HTTP: 
-http://localhost/guias/resources/views/nombre-del-archivo.php
-
-Estos archivos no utilizan blade, por lo que vincular a hojas de estilo se hace de la siguiente forma:
-
-    <link href="http://localhost/guias/public/css/bootstrap.min.css" rel="stylesheet">
+La idea es que este sistema, al igual que un cuaderno en fisico, pueda servirte para anotar tus dudas y aprendizajes, y que estas puedan servirte a la hora de repasar lo que has aprendido, teniendo todos tus posts en un solo lugar, facilitando la búsqueda, lectura y borrado de los contenidos, y ahorrando cuadernos, lapices, y papeles, 
+aunque tampoco se pretende sustituir al papel y lapiz sino mas bien complementar su uso de forma digital.
