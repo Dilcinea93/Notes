@@ -4,7 +4,7 @@
 @section('content')
 <h4> Mas faciles</h4>
 <ul>
-
+<li>Hacer ventana modal para que el usuario agregue sus categorias</li>
 		<li>Limpiar el codigo, unificar funciones</li>
 	<li>
 		-Ajustar el diseño de paginador

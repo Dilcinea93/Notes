@@ -2,25 +2,33 @@
 @section('title','Listado de posts')
 
 @section('content')
- @if(!empty($resultados))
+ @if(!empty($resultados_get))
  <h3> 
- 	 @if(!empty($palabra))
-Resultados con la palabra {{$palabra}}
+ 	@if(!empty($palabra))
+		Resultados con la palabra {{$palabra}}
 
-@endif
+	@endif
 		
 </h3>
 <div class="lista">
 	<ul  style="list-style: none">
-		@foreach($resultados as $resultado)
-		<span style="color:#00dd00;">	</span>Categoria {!! $resultado->categoria->nombre!!}
-		      <li>
+		@foreach($resultados_get as $resultado)
+		
+					
+						<span >
+						<i>Curso: {!! $resultado->titulo!!}</i>
+  						</a>
+						</span></u></h2>
+					
+						<span ><i>categoria:  resultado->categoria->nombre</i></span></u></h2>
+					
+		 	<li>
 		      	<table style="width:100%;border:1px solid black;">
 		      		<tr>
 		      			<td style="word-break:break-all;width:80%;" >
 		      				<h2>
 					      			<u>
-					      				<a href="{{url ('tema',['id' => $resultado->id])}}" > {!! $resultado->titulo!!}</a></u>
+					      				<a href="{{route ('temas.show',['id' => $resultado->id])}}" > {!! $resultado->titulo!!}</a></u>
 					      					<!-- almacena cada palabra en una posicion distinta de un array.
 					      					recorre ese array y SI la posicion [i] tenga una cadena igual a Palabra, entonces imprime esa con un formato diferente.
 					      					 por cada iteracion en el array, imprime el valor.. pero antes verifica si es igual a $palabra -->
@@ -49,9 +57,9 @@ Resultados con la palabra {{$palabra}}
 	<div class="row">	
 		<div class="col-xs-12">	
 			@if(!empty($palabra))
-					{!! $resultados->appends(['search' => $palabra])->links() !!}
+					{!! $resultados_p->appends(['search' => $palabra])->links() !!}
 			@else
-					{!! $resultados->links() !!}
+					{!! $resultados_p->links() !!}
 			@endif
 	<!--
 		->onEachSide(5) laravel 5.8
@@ -67,11 +75,11 @@ Resultados con la palabra {{$palabra}}
 </center>
 	<center>
 
-<h2>{{$resultados->total()}} registros encontrados</h2>		
+<h2>{{$resultados_p->total()}} registros encontrados</h2>		
 
-        Pagina {{$resultados->currentPage()}} </br>
+        Pagina {{$resultados_p->currentPage()}} </br>
 	 	@if(!empty($palabra))
-			{{$resultados->total()}} con la palabra {{$palabra}}
+			{{$resultados_p->total()}} con la palabra {{$palabra}}
 		@endif
 	</center>
  @else

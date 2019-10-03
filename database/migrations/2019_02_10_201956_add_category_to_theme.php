@@ -16,7 +16,7 @@ class AddCategoryToTheme extends Migration
         //
         Schema::table('tema', function (Blueprint $table) {
             
-            $table->unsignedInteger('categoria_id')->after('post');
+            $table->unsignedInteger('categoria_id')->after('post')->nullable();
             //reestriccion de clave foranea a continuacion
             $table->foreign('categoria_id')->references('id')->on('categoria');
         });

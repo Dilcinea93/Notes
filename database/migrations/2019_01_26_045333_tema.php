@@ -18,6 +18,10 @@ class Tema extends Migration
             $table->increments('id');
             $table->text('titulo');
             $table->text('post');
+            $table->unsignedInteger('curso_id')->nullable();
+            //reestriccion de clave foranea a continuacion
+            $table->foreign('curso_id')->references('id')->on('curso_models');
+        
             $table->rememberToken();
             $table->timestamps();
         });

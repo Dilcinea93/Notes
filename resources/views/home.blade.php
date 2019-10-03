@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 @section('title','Registrar')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 @section('content')
  <script type="text/javascript">
@@ -21,25 +23,60 @@
      });
   });
     </script>
-              
-              <form method="post" action="{{url('save')}}" role="form">
+            
+  
+              <form method="post" action="{{route('temas.store')}}" role="form" >
+              <div id="app">
                 {{ csrf_field() }}
-                <span><h3><b>Categoria</b></h3></span>
+                <div id="categorias_desc" v-if="label_category">
+                  <span id="category_name"><h3><b>Categoria</b></h3></span>
 
-                  <select name="categoria" id="categoria" class="form-control" value="">
-                    @foreach($categorias as $categories)
-                      <option value="{!! $categories-> id!!}">
-                        {!! $categories-> nombre!!}
-                      </option>
-                    @endforeach
-                  </select>
+                    <select name="categoria" id="categoria"  class="form-control" value="">
+                      @foreach($categorias as $categories)
+                        <option value="{!! $categories-> id!!}">
+                          {!! $categories-> nombre!!}
+                        </option>
+                      @endforeach
+                    </select>
+                </div>  
+                <div>Asociar a curso: 
+                  <select  name="curso" id="curso"  class="form-control" value="">
+                      @foreach($cursos as $curso)
+                        <option value="{!! $curso-> id!!}">
+                          {!! $curso-> titulo!!}
+                        </option>
+                      @endforeach
+                    </select>
+                </div>
+                  <label>Curso</label> <input type="checkbox" name="select_curso" v-on:change="curso()"> 
+                  <input type="text" name="nombre_curso" id="nombre_curso" class="form-control" >
+                  </div>
+                  <label for="titulo"><h3><b>Titulo: </b></h3></label>
+                  <input type="text" name="titulo" id="titulo" class="form-control" >
                 
-                <label for="titulo"><h3><b>Titulo: </b></h3></label>
-                <input type="text" name="titulo" id="titulo" class="form-control" >
                             <textarea class="ckeditor" name="post" id="editor1" rows="10" cols="80" placeholder="Escribe aqui la informacion del POST">
                             </textarea>
 
                             <button type="submit"class="btn btn-success btn-block">REGISTRAR</button>
  </form>
+ <script>
+var form = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!',
+  label_category:true,
+  select_category:true,
+  },
+  methods:{
+    curso: function(){
+      this.select_category=false;
+      this.label_category=false;
+    }
+  }
+})
+      
+</script> 
 @endsection
+
+
 

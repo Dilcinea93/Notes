@@ -26,15 +26,23 @@ var id = $("#id_post").val();
     </script>
 	@foreach($posts as $post)
 	<div class="container">
-
 		<form>
-		<div class="row">
+		<div class="row lista">
 			<div class="col-sm-12">
-			<center>
-				<input type="hidden" id="id_post" name="" value="{!! $post->id!!}">
-				<h2><u>{!! $post->titulo!!}
-	       		<span ><i>categoria: {!! $post->categoria->nombre!!}</i></span></u></h2>
-			</center>
+				<center>
+					<input type="hidden" id="id_post" name="" value="{!! $post->id!!}">
+					
+					@if($curso < 1)
+					
+						<span >
+						<a href="{{url ('resultados',['id' => $post->id,'curso' =>'0'])}}" >
+						<i>Curso: {!! $post->titulo!!}</i>
+  						</a>
+						</span></u></h2>
+					@else 
+						<span ><i>categoria: {!! $post->categoria->nombre!!}</i></span></u></h2>
+					@endif
+				</center>
 			</div>
 		</div>
 	</div>
@@ -43,10 +51,8 @@ var id = $("#id_post").val();
 <div class="container">
 	<div class="row" >
 		<div class="col-sm-10">
-			
-	  		<p style="font-size: 15px">  {!! $post->post!!} </p>
+	  		<p style="font-size: 15px"> {!! $post->post!!} </p>
 		</div>
-
 		<div class="col-sm-2">
 			<div class="row">
 				<div class="col-sm-6">
@@ -56,7 +62,7 @@ var id = $("#id_post").val();
 					 <!-- <form action="{{action('ThemeController@destroy', $post->id)}}" method="post"> -->
                    <!-- {{csrf_field()}} -->
                    <!-- <input name="_method" type="hidden" value="DELETE"> -->
-                   <a class="btn btn-danger btn-xs" href="{{url('destroy',['id' => $post->id])}}"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
+                   <a class="btn btn-danger btn-xs" href="{{route('temas.destroy',['id' => $post->id])}}"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
                <!-- </form> -->
 				</div>	
 			</div>
@@ -66,5 +72,6 @@ var id = $("#id_post").val();
 </div>
 	  </div>
 	@endforeach
+	
 @endsection
 
