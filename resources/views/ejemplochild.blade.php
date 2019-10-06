@@ -14,41 +14,27 @@
       type: 'POST',
       url: 'temas',
       data: {
-              '_token': $('input[name=_token]').val(),
-              'categoria': $("#categoria").val(),
-              'titulo': $('#titulo').val(),
-              // 'post': $('#editor1').val() no se porque no captura este dato pero es por la clase ckeditor.... si le quito la clase, si lo guarda. 
-          }
+
+                    '_token': $('input[name=_token]').val(),
+                    'categoria': $("#categoria").val(),
+                    'titulo': $('#titulo').val(),
+                    // 'post': $('#editor1').val() no se porque no captura este dato pero es por la clase ckeditor.... si le quito la clase, si lo guarda. 
+                }
      });
   });
     </script>
             
-
-  <div class="panel panel-default">
-    <div class="panel-heading"><span id="category_name"><h3><b>Categoria</b></h3></span></div>
-      <div class="panel-body ">
+  
               <form method="post" action="{{route('temas.store')}}" role="form" >
               <div id="app">
                 {{ csrf_field() }}
                 <div id="categorias_desc" v-if="label_category">
-                  
+                  <span id="category_name"><h3><b>Categoria</b></h3></span>
 
-                    <select name="categoria" id="categoria"  class="form-control" value="">
-                      @foreach($categorias as $categories)
-                        <option value="{!! $categories-> id!!}">
-                          {!! $categories-> nombre!!}
-                        </option>
-                      @endforeach
-                    </select>
+                   
                 </div>  
                 <div>Asociar a curso: 
-                  <select  name="curso" id="curso"  class="form-control" value="">
-                      @foreach($cursos as $curso)
-                        <option value="{!! $curso-> id!!}">
-                          {!! $curso-> titulo!!}
-                        </option>
-                      @endforeach
-                    </select>
+                 
                 </div>
                   <label>Curso</label> <input type="checkbox" name="select_curso" v-on:change="curso()"> 
                   <input type="text" name="nombre_curso" id="nombre_curso" class="form-control" >
@@ -61,16 +47,6 @@
 
                             <button type="submit"class="btn btn-success btn-block">REGISTRAR</button>
  </form>
-
-<center>  
-  <h4>  
-      No se trata de no tener errores, se trata de aprender a resolverlos.
-  </h4>
-</center>
- </div>
-
-
- 
  <script>
 var form = new Vue({
   el: '#app',

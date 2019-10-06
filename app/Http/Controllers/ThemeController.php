@@ -23,20 +23,28 @@ class ThemeController extends Controller
         $categorias=categoria::all();
         $cursos=cursoModel::all();
         $posts_temas=temas::orderBy('id', 'desc')->get();
-        return view('home',compact('categorias','posts_temas','cursos'));
+        return view('home', compact('categorias','cursos','posts_temas'));
     }
 
-    public function search(Request $request,$id=null,$curso=null)
+    public function search(Request $request,$curso=null,$id=null)
     {
         $posts='';
         $palabra='';
         $title_post='';
+        //dd($id);
         $posts=temas::orderBy('id', 'desc')->get();
-           if($id!=null){
-            if($id==00){
-                $resultados_get= cursoModel::get();//trae una coleccion
-                $resultados_p=cursoModel::paginate(3);//trae una instancia de paginador
-                $curso=$id;
+           if($curso!=null){
+            if($curso==00){
+                if($id){
+                    $resultados=temas::where('curso_id',$id);
+                    $resultados_get= $resultados->get();
+                    $resultados_p=$resultados->paginate(3);
+                    $curso=00;
+                }else{
+                    $resultados_get= cursoModel::get();//trae una coleccion
+                    $resultados_p=cursoModel::paginate(3);//trae una instancia de paginador
+                    $curso=01;
+                 }
             }else{
                 $resultados=temas::where('categoria_id',$request['id']);
                 $resultados_get= $resultados->get();
@@ -71,7 +79,8 @@ class ThemeController extends Controller
         }
         
         $cantidad= count($resultados_get);
-        return view('lista',compact('resultados_p','resultados_get','cantidad','palabra','posts','title_post'));
+        //dd($curso);
+        return view('lista',compact('resultados_p','resultados_get','cantidad','palabra','posts','title_post','curso'));
         // return view('lista')->with(
         //     Arr::collapse(['resultados']));
             /* como hago para enviarle a la vista una sola coleccion que almacene lo que se vaya guardando con el mismo nombre? 
@@ -105,22 +114,7 @@ class ThemeController extends Controller
         return redirect()->route('temas.index');
     }
 
-    public function elimina_registros(Request $request){
-        $ids=$request->id_registro;
-        $registros = \collect($ids)
-        ->map(function($id){
-            $registro_a_borrar=temas::where('id', $id);
-            $registro_a_borrar->delete();
-        });
-        return redirect()->route('home');
-    }
-    
-    
-    public function destroy($id)
-    {
-        temas::find($id)->delete();
-        return redirect()->route('home')->with('success','Registro eliminado satisfactoriamente');
-    }
+   
 
     public function edit($id) // RUTA GET. Si hago una peticion POST a esta ruta, de bolas que tendre MethodNotAllowed (405)
     {
@@ -137,26 +131,10 @@ class ThemeController extends Controller
             'post'=> $request['post'],
             'categoria_id'=> $request['categoria'],
             ]);
-        return redirect()->route('home')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('temas.index')->with('success','Registro actualizado satisfactoriamente');
     }
 
-    public function listado(Request $request, $cat, $curso= null)
-    {
-        //dd($curso);
-        $posts=temas::orderBy('id', 'desc')->get();
-        if($curso!=null){
-            if($curso!=1){
-                $resultados=temas::where('curso_id', $request['id'])->paginate(3);
-                }
-        }else{
-            $resultados=temas::where('categoria_id',$request['id'])->paginate(3);
-        }
-        
-                $cantidad= count($resultados);
-        $post_txt='';
-        // dd($resultados);
-        return view('lista',compact('resultados','cantidad','posts','curso'));
-    }
+    
 
     
     public function show($id) //una ruta show de un contrlador tipo resource recibe un parametro ID, no un request, ya que no puede recuperar los datos de Request. Si lo haces con request e intentas recuperar un dato del request como si esta fuera una ruta de una peticion get o post normal ( no resource, asi $request['titulo']) te dara error..
@@ -165,19 +143,52 @@ class ThemeController extends Controller
             $posts_temas= temas::orderBy('id', 'desc')->get();
             foreach($posts as $post){
                 if($post->curso_id==NULL){
-                    $curso=1;
-                }else{$curso=0; 
+                    $curso=0;
+                }else{$curso=1; 
                 }
             }
         return view('info',compact('posts','posts_temas','curso'));
     }
 
-    public function massivedelete(Request $request){
-        //recibe los ID de los post a eliminar
-        dd($request);
-        $cantidad= $request.count();
-      //for($i=0;$i<$cantidad;$i++){
-            temas::where(['id'=>$request['id']])->delete();
-        //}
+
+
+    public function elimina_registros(Request $request){
+        $ids=$request->id_registro;
+        $registros = \collect($ids)
+        ->map(function($id){
+            $registro_a_borrar=temas::where('id', $id);
+            $registro_a_borrar->delete();
+        });
+        return redirect()->route('temas.index');
     }
+    
+    
+    public function destroy($id)
+    {
+        temas::find($id)->delete();
+        return redirect()->route('temas.index')->with('success','Registro eliminado satisfactoriamente');
+    }
+// Procesar videos para descargar
+    // public function processUrl(Request $request){
+    //     if($request['url']){
+    //         $vurl = "http://www.youtube.com/get_video?video_id=".$request['url'];
+    //         $data = file_get_contents($request['url']);
+    //         parse_str($data,$info);
+    //         //descarga este:  https://www.youtube.com/watch?v=Q3stHsWowNg&list=PLpOqH6AE0tNjx0SzNvlsP9-JGJ0zmuFnS&index=3
+    //         //eval(\Psy\sh());
+    //         //dd($info);
+    //         //apartir de aqui se comienza a obtener por separado titulo, calidad y eso
+    //         $r=explode('flashvars="',$result);
+    //         $r2=explode(';',$r[1]);
+//         $c=0;
+    //     }
+    //}
+    public function download($url){
+
+    }
+
+    public function respaldo(){
+
+    }
+
 }

@@ -11,7 +11,7 @@
 var id = $("#id_post").val();
      $.ajax({
       type: 'GET',
-     url: 'temas/'+id,  //laravel no esta agarrando esta ruta del controlador resource, sino de una ruta que ya existia en routes.web, por lo tanto como yo quiero hacer esta peticion ajax y las rutas de web.php son las que se recargan, por eso la pagina se sigue recargando, porque no la toma del controlador resource
+     url: 'temas.edit/'+id,  //laravel no esta agarrando esta ruta del controlador resource, sino de una ruta que ya existia en routes.web, por lo tanto como yo quiero hacer esta peticion ajax y las rutas de web.php son las que se recargan, por eso la pagina se sigue recargando, porque no la toma del controlador resource
       data: {
       	//no se porque me lleva a temas/undefined/edit... aun si le mando solo temas y edit... Esto me pasaba porque al intentar capturarla con el . (class), no estaba capturandola. Lo intente con ID y si...
                     '_token': $('input[name=_token]').val(),
@@ -32,8 +32,7 @@ var id = $("#id_post").val();
 				<center>
 					<input type="hidden" id="id_post" name="" value="{!! $post->id!!}">
 					
-					@if($curso < 1)
-					
+					@if($curso == 0)
 						<span >
 						<a href="{{url ('resultados',['id' => $post->id,'curso' =>'0'])}}" >
 						<i>Curso: {!! $post->titulo!!}</i>
@@ -49,23 +48,17 @@ var id = $("#id_post").val();
 	  <div class="container">
 <input type="hidden" name="_token" value="{{csrf_token()}}">
 <div class="container">
-	<div class="row" >
-		<div class="col-sm-10">
+	<div class="row" style="border-color:red;">
+		<div class="col-sm-8">
 	  		<p style="font-size: 15px"> {!! $post->post!!} </p>
 		</div>
-		<div class="col-sm-2">
-			<div class="row">
-				<div class="col-sm-6">
-					<a class="btn btn-primary btn-xs" class="edit" href="{{url('update',['id' => $post->id])}}"><span class="glyphicon glyphicon-pencil"></span>ACTUALiZAR</a>
-				</div>
-				<div class="col-sm-6">
+		<div class="col-sm-4">
+					<a class="" class="edit" href="{{url('update',['id' => $post->id])}}"> <i class="fa fa-fw fa-facebook"></i> <span class="glyphicon glyphicon-pencil"></span>Actualizar</a>
 					 <!-- <form action="{{action('ThemeController@destroy', $post->id)}}" method="post"> -->
                    <!-- {{csrf_field()}} -->
                    <!-- <input name="_method" type="hidden" value="DELETE"> -->
-                   <a class="btn btn-danger btn-xs" href="{{route('temas.destroy',['id' => $post->id])}}"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>ELIMINAR</a>
+                   |<a class="" href="{{route('temas.destroy',['id' => $post->id])}}"><span class="glyphicon glyphicon-trash" value="ELIMINAR"></span>Eliminar</a>
                <!-- </form> -->
-				</div>	
-			</div>
 
 		</div>
 	</div>

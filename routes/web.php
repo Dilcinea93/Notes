@@ -13,9 +13,10 @@
 
 Route::resource('temas', 'ThemeController');
 Route::get('/search/{id?}/{curso?}', 'ThemeController@search');
-Route::view('/ayuda', 'ayuda')->name('help');
+Route::view('ayuda', 'ayuda')->name('help');
 Route::post('elimina_registros','ThemeController@elimina_registros')->name('elimina_registros');
-
+Route::view('videos','videos')->name('videos');
+Route::get('respaldo','ThemeController@respaldo')->name('respaldo');
 /**
  * 
  * Ruta resource:
@@ -29,6 +30,7 @@ Route::post('elimina_registros','ThemeController@elimina_registros')->name('elim
  * temas.destroy
  */
 //Route::post('/save', 'ThemeController@store');
+Route::view('/ejemplo', 'ejemplochild')->name('ejemplo');
 Route::get('/destroy/{id}', 'ThemeController@destroy');
 
 Route::get('/update/{id}', 'ThemeController@edit');

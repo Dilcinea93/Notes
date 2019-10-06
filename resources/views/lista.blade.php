@@ -13,23 +13,19 @@
 <div class="lista">
 	<ul  style="list-style: none">
 		@foreach($resultados_get as $resultado)
-		
-					
-						<span >
-						<i>Curso: {!! $resultado->titulo!!}</i>
-  						</a>
-						</span></u></h2>
-					
-						<span ><i>categoria:  resultado->categoria->nombre</i></span></u></h2>
-					
-		 	<li>
-		      	<table style="width:100%;border:1px solid black;">
+			<li>
+		      	<table style="width:100%;" class="table table-striped">
 		      		<tr>
-		      			<td style="word-break:break-all;width:80%;" >
+		      			<td style="word-break:break-all;width:80%;" scope="row">
 		      				<h2>
 					      			<u>
-					      				<a href="{{route ('temas.show',['id' => $resultado->id])}}" > {!! $resultado->titulo!!}</a></u>
-					      					<!-- almacena cada palabra en una posicion distinta de un array.
+									  @if($curso=='00')
+									  <a href="{{url ('search',['curso' => $curso,'id'=>$resultado->id])}}" > {!! $resultado->titulo!!}</a></u>
+					      					
+									  @else
+									  <a href="{{route ('temas.show',['id' => $resultado->id])}}" > {!! $resultado->titulo!!}</a></u>
+					      					
+									  @endif<!-- almacena cada palabra en una posicion distinta de un array.
 					      					recorre ese array y SI la posicion [i] tenga una cadena igual a Palabra, entonces imprime esa con un formato diferente.
 					      					 por cada iteracion en el array, imprime el valor.. pero antes verifica si es igual a $palabra -->
 
@@ -56,7 +52,9 @@
 		
 	<div class="row">	
 		<div class="col-xs-12">	
+
 			@if(!empty($palabra))
+
 					{!! $resultados_p->appends(['search' => $palabra])->links() !!}
 			@else
 					{!! $resultados_p->links() !!}
@@ -83,8 +81,9 @@
 		@endif
 	</center>
  @else
-
+<div class="alert alert-warning" role="alert">
   <h2>Aun no hay ningun post</h2>
+</div>
  @endif
 @endsection
 
